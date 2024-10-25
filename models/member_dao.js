@@ -2,7 +2,7 @@ const myDataSource = require('./init');
 
 const findByEmail = async (email) => {
   const [userEmail] = await myDataSource.query(`
-    SELECT email FROM users
+    SELECT * FROM users
     WHERE email = ?`
     , [email]);
   return userEmail;

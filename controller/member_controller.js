@@ -13,4 +13,16 @@ const createUser = async (req, res) => {
   }
 }
 
-module.exports = { createUser }
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const token = await memberService.loginUser({ email, password });
+    res.status(200).json({ message: 'Login successful', token });
+  } catch (error) {
+    console.log(error)
+    res.status(error.statusCode || 500).json({ message: error.message || 'Internal Server Error' })
+  }
+}
+
+module.exports = { createUser, loginUser }
