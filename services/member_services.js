@@ -1,5 +1,7 @@
 const memberDao = require('../models/member_dao')
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+const SECRETKEY = process.env.SECRET_KEY
 
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -71,4 +73,41 @@ const createUser = async (userData) => {
   return newUser;
 };
 
-module.exports = { createUser }
+const loginUser = async (userData) => {
+  const { email, password } = userData;
+
+  const REQUIRED_KEYS = { email, password };
+  Object.keys(REQUIRED_KEYS).map((key) => {
+    if (!REQUIRED_KEYS[key]) {
+      const error = new Error(`${key}를 입력하세요`);
+      error.statusCode = 400;
+      throw error;
+    }
+  })
+
+  if (!validateEmail(email)) {
+    const error = new Error('잘못된 이메일 형식입니다');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const user = await memberDao.findByEmail(email);
+
+  if (!user) {
+    const error = new Error('사용자를 찾을 수 없습니다');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password)
+  if (!isPasswordValid) {
+    const error = new Error('잘못된 비밀번호입니다')
+    error.statusCode = 401;
+    throw error;
+  }
+
+  const token = jwt.sign({ userId: user.id, email: user.email }, SECRETKEY, { expiresIn: '1h' });
+  return token;
+}
+
+module.exports = { createUser, loginUser }
