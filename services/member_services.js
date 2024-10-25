@@ -1,0 +1,74 @@
+const memberDao = require('../models/member_dao')
+const bcrypt = require('bcrypt');
+
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email)
+}
+
+const validatePassword = (password) => {
+  const passwordRegex = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+  return passwordRegex.test(password);
+};
+
+const validateNickname = (nickname) => {
+  return nickname.length >= 3 && nickname.length <= 8;
+};
+
+
+const createUser = async (userData) => {
+  const { email, nickname, password } = userData;
+
+  const REQUIRED_KEYS = { email, nickname, password };
+  Object.keys(REQUIRED_KEYS).map((key) => {
+    if (!REQUIRED_KEYS[key]) {
+      const error = new Error(`${key}를 입력하세요`);
+      error.statusCode = 400;
+      throw error;
+    }
+  })
+
+  if (!validateEmail(email)) {
+    const error = new Error('잘못된 이메일 형식입니다');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (!validatePassword(password)) {
+    const error = new Error('잘못된 비밀번호 형식입니다');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (!validateNickname(nickname)) {
+    const error = new Error('닉네임 길이 3자~8자');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const existingEmailUser = await memberDao.findByEmail(email);
+  if (existingEmailUser) {
+    const error = new Error('이미 사용 중인 이메일입니다');
+    error.statusCode = 409;
+    throw error;
+  }
+
+  const existingNicknameUser = await memberDao.findByNickname(nickname);
+  if (existingNicknameUser) {
+    const error = new Error('이미 사용 중인 닉네임입니다');
+    error.statusCode = 409;
+    throw error;
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = await memberDao.createUser({
+    email,
+    nickname,
+    password: hashedPassword
+  });
+
+  return newUser;
+};
+
+module.exports = { createUser }
