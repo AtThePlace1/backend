@@ -6,4 +6,14 @@ const findUserById = async (userId) => {
   return userInfo;
 }
 
-module.exports = { findUserById }
+const likeList = async (userId) => {
+  return await myDataSource.query(`
+    SELECT users.profile_image, users.nickname,
+    cafes.cafe_name, cafes.opening_hours, cafes.location_address, cafes.contact_number
+    FROM users
+    JOIN likes ON users.id = likes.user_id
+    JOIN cafes ON cafes.id = likes.cafe_id
+    WHERE users.id = ?`, [userId])
+}
+
+module.exports = { findUserById, likeList }
