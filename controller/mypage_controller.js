@@ -1,7 +1,7 @@
 const mypageService = require('../services/mypage_service.js')
 
 const getUserById = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user.id;
 
   try {
     const userInfo = await mypageService.getUserById(userId);
