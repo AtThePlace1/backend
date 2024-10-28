@@ -16,4 +16,11 @@ const likeList = async (userId) => {
     WHERE users.id = ?`, [userId])
 }
 
-module.exports = { findUserById, likeList }
+const updateUserProfile = async (userId, profileImage) => {
+  return await myDataSource.query(`
+    UPDATE users
+    SET profile_image = ?
+    WHERE id = ?`, [profileImage, userId])
+}
+
+module.exports = { findUserById, likeList, updateUserProfile }
