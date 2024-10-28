@@ -16,7 +16,7 @@ const getUserById = async (req, res) => {
 }
 
 const updateProfile = async (req, res) => {
-  const { userId } = req.params
+  const userId = req.user.id
   const { profileImage } = req.body;
 
   try {
