@@ -23,4 +23,11 @@ const updateUserProfile = async (userId, profileImage) => {
     WHERE id = ?`, [profileImage, userId])
 }
 
-module.exports = { findUserById, likeList, updateUserProfile }
+const deleteLikeList = async (userId, cafeId) => {
+  return await myDataSource.query(`
+    DELETE FROM likes
+    WHERE user_id = ? AND cafe_id = ?`, [userId, cafeId]
+  )
+}
+
+module.exports = { findUserById, likeList, updateUserProfile, deleteLikeList }
