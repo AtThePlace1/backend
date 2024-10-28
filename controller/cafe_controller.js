@@ -25,4 +25,27 @@ const getCafeById = async (req, res) => {
   }
 }
 
-module.exports = { getAllCafes, getCafeById };
+const getPreferences = async (req, res) => {
+  const { pet = 0, decaf = 0, groupSeat = 0, terrace = 0 } = req.query;
+
+  const preferences = {
+    pet: Number(pet),
+    decaf: Number(decaf),
+    terrace: Number(terrace),
+    groupSeat: Number(groupSeat),
+  };
+
+  try {
+    const cafes = await cafeService.filterCafesByPreferences(preferences);
+    if (!cafes) {
+      return res.status(404).json({ message: 'no cafes match your preferences.' })
+    }
+
+    res.status(200).json({ message: 'filtering sucessfully', cafes })
+  } catch (error) {
+    console.log(error)
+    res.status(error.statusCode || 500).json({ error: error.message || 'Internal Server Error' })
+  }
+}
+
+module.exports = { getAllCafes, getCafeById, getPreferences };
