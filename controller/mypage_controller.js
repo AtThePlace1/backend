@@ -1,7 +1,7 @@
 const mypageService = require('../services/mypage_service.js')
 
 const getUserById = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user.id;
 
   try {
     const userInfo = await mypageService.getUserById(userId);
@@ -16,7 +16,7 @@ const getUserById = async (req, res) => {
 }
 
 const updateProfile = async (req, res) => {
-  const { userId } = req.params
+  const userId = req.user.id
   const { profileImage } = req.body;
 
   try {
