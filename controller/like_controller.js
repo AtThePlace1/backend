@@ -1,7 +1,8 @@
 const likeService = require('../services/like_service');
 
 const likeController = async (req, res) => {
-  const { userId, cafeId } = req.params;
+  const userId = req.user.id
+  const { cafeId } = req.params;
 
   try {
     const result = await likeService.toggleLike(userId, cafeId);
