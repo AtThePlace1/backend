@@ -12,7 +12,7 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const decoded = await jwt.verify(token, SECRETKEY);
-    const findUser = await memberDao.getEmailByUser(decoded.email);
+    const findUser = await memberDao.findByEmail(decoded.email);
 
     if (!findUser) {
       return res.status(404).json({ error: 'No User' })
