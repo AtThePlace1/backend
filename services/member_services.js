@@ -107,7 +107,8 @@ const loginUser = async (userData) => {
   }
 
   const token = jwt.sign({ userId: user.id, email: user.email }, SECRETKEY, { expiresIn: '1h' });
-  return token;
+
+  return { usreId: user.id, token };
 }
 
 module.exports = { createUser, loginUser }
