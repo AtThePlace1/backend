@@ -9,10 +9,17 @@ const findUserById = async (userId) => {
 const likeList = async (userId) => {
   return await myDataSource.query(`
     SELECT users.profile_image, users.nickname,
-    cafes.cafe_name, cafes.opening_hours, cafes.location_address, cafes.contact_number
+    JSON_ARRAYAGG(
+    JSON_OBJECT(
+    'cafe_id', cafes.id,
+    'cafe_name', cafes.cafe_name,
+    'opening_hours', cafes.opening_hours,
+    'loacation_address', cafes.location_address,
+    'contact_number', cafes.contact_number
+  )) AS likeList
     FROM users
-    JOIN likes ON users.id = likes.user_id
-    JOIN cafes ON cafes.id = likes.cafe_id
+    LEFT JOIN likes ON users.id = likes.user_id
+    LEFT JOIN cafes ON cafes.id = likes.cafe_id
     WHERE users.id = ?`, [userId])
 }
 
