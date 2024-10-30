@@ -28,4 +28,18 @@ const updateProfile = async (req, res) => {
   }
 }
 
-module.exports = { getUserById, updateProfile }
+const deleteLikeList = async (req, res) => {
+  const userId = req.user.id;
+  const cafeId = req.params.cafeId;
+
+  try {
+    await mypageService.deleteLikeList(userId, cafeId)
+    res.status(200).json({ message: 'Delete Successfully' })
+
+  } catch (error) {
+    console.log(error)
+    res.status(error.statusCode || 500).json({ message: error.message || 'Internal Server Error' })
+  }
+}
+
+module.exports = { getUserById, updateProfile, deleteLikeList }

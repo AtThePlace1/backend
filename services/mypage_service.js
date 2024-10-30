@@ -5,7 +5,11 @@ const getUserById = async (userId) => {
 }
 
 const updateProfile = async (userId, profileImage) => {
-  return await mypageDao.updateUserProfile(userId, profileImage)
+  return await mypageDao.updateUserProfile(userId, profileImage);
 }
 
-module.exports = { getUserById, updateProfile }
+const deleteLikeList = async (userId, cafeId) => {
+  return await mypageDao.deleteLikeList(userId, cafeId);
+}
+
+module.exports = { getUserById, updateProfile, deleteLikeList }
