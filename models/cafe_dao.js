@@ -14,9 +14,12 @@ const getCafeById = async (id) => {
 }
 
 const getCafesByPreferences = async ({ pet, decaf, groupSeat, terrace }) => {
-  const [cafes] = await myDataSource.query(`
-    SELECT * FROM cafes
-    JOIN cafe_options ON cafes.id = cafe_options.cafe_id
+  const cafes = await myDataSource.query(`
+    SELECT cafes.id,cafes.cafe_name,cafes.opening_hours,cafes.location_address,cafes.latitude,cafes.longitude,cafes.contact_number,cafes.sns_account,
+    cafe_images.image_main, cafe_images.image_menu
+    FROM cafes
+    LEFT JOIN cafe_options ON cafes.id = cafe_options.cafe_id
+    LEFT JOIN cafe_images ON cafes.id = cafe_images.cafe_id
     WHERE cafe_options.pet = ? 
     AND cafe_options.decaf = ?
     AND cafe_options.group_seat = ?

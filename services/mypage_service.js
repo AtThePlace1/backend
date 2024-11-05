@@ -12,4 +12,9 @@ const deleteLikeList = async (userId, cafeId) => {
   return await mypageDao.deleteLikeList(userId, cafeId);
 }
 
-module.exports = { getUserById, updateProfile, deleteLikeList }
+const saveImagePath = async (userId, imagePath) => {
+  return await mypageDao.insertImagePath(userId, imagePath);
+};
+
+
+module.exports = { getUserById, updateProfile, deleteLikeList, saveImagePath }

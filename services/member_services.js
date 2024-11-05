@@ -19,7 +19,7 @@ const validateNickname = (nickname) => {
 
 
 const createUser = async (userData) => {
-  const { email, nickname, password } = userData;
+  const { email, nickname, password, profile_image } = userData;
 
   const REQUIRED_KEYS = { email, nickname, password };
   Object.keys(REQUIRED_KEYS).map((key) => {
@@ -67,9 +67,9 @@ const createUser = async (userData) => {
   const newUser = await memberDao.createUser({
     email,
     nickname,
-    password: hashedPassword
+    password: hashedPassword,
+    profile_image
   });
-
   return newUser;
 };
 
@@ -108,7 +108,7 @@ const loginUser = async (userData) => {
 
   const token = jwt.sign({ userId: user.id, email: user.email }, SECRETKEY, { expiresIn: '1h' });
 
-  return { usreId: user.id, token };
+  return token;
 }
 
 module.exports = { createUser, loginUser }

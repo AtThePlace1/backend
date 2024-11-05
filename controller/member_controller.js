@@ -1,19 +1,19 @@
 const memberService = require('../services/member_services')
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
   const { email, nickname, password, profile_image } = req.body;
+  console.log(req.body);
 
   try {
-    const newUser = await memberService.createUser({ email, nickname, password });
+    const newUser = await memberService.createUser({ email, nickname, password, profile_image });
     res.status(201).json({ message: 'User registered successful', user: newUser })
   } catch (error) {
     console.log(error)
-    // const statusCode = error.statusCode || 500;
-    res.status(error.statusCode || 500).json({ message: error.message || 'Internal Server Error' })
+    next(error);
   }
 }
 
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {
     console.log(error)
-    res.status(error.statusCode || 500).json({ message: error.message || 'Internal Server Error' })
+    next(error);
   }
 }
 

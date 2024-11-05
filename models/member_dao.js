@@ -17,12 +17,12 @@ const findByNickname = async (nickName) => {
 };
 
 const createUser = async (userData) => {
-  const { email, nickname, password } = userData;
+  const { email, nickname, password, profile_image } = userData;
   return await myDataSource.query(`
-    INSERT INTO users (email, nickname, password)
-    VALUES (?, ?, ?)
+    INSERT INTO users (email, nickname, password, profile_image)
+    VALUES (?, ?, ?,?)
     `
-    , [email, nickname, password])
+    , [email, nickname, password, profile_image])
 }
 
 module.exports = { findByEmail, findByNickname, createUser }

@@ -1,6 +1,6 @@
 const likeService = require('../services/like_service');
 
-const likeController = async (req, res) => {
+const likeController = async (req, res, next) => {
   const userId = req.user.id
   const { cafeId } = req.params;
 
@@ -13,7 +13,7 @@ const likeController = async (req, res) => {
     }
   } catch (error) {
     console.log(error)
-    res.status(error.statusCode || 500).json({ message: error.message || 'Internal  Server Error' })
+    next(error);
   }
 }
 

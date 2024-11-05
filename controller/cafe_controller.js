@@ -25,7 +25,7 @@ const getCafeById = async (req, res) => {
   }
 }
 
-const getPreferences = async (req, res) => {
+const getPreferences = async (req, res, next) => {
   const { pet = 0, decaf = 0, groupSeat = 0, terrace = 0 } = req.query;
 
   const preferences = {
@@ -37,14 +37,16 @@ const getPreferences = async (req, res) => {
 
   try {
     const cafes = await cafeService.filterCafesByPreferences(preferences);
-    if (!cafes) {
-      return res.status(404).json({ message: 'no cafes match your preferences.' })
+    if (!cafes || cafes.length === 0) {
+      const error = new Error('no cafes match your preferences.');
+      error.statusCode = 404;
+      throw error;
     }
 
-    res.status(200).json({ message: 'filtering sucessfully', cafes })
+    res.status(200).json({ cafes })
   } catch (error) {
     console.log(error)
-    res.status(error.statusCode || 500).json({ error: error.message || 'Internal Server Error' })
+    next(error);
   }
 }
 
