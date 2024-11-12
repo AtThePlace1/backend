@@ -2,7 +2,7 @@
 <img src="https://img.shields.io/badge/Node.js-white?style=flat-square&logo=Node.js&logoColor=5FA04E"/></a>
 <img src="https://img.shields.io/badge/MySQL-white?style=flat-square&logo=mysql&logoColor=4479A1"/></a>
 <img src="https://img.shields.io/badge/git-white?style=flat-square&logo=git&logoColor=F05032"/></a>
-<img src="https://img.shields.io/badge/linux-white?style=flat-square&logo=linux&logoColor=fcc624"/></a>
+<img src="https://img.shields.io/badge/Linux-white?style=flat-square&logo=linux&logoColor=fcc624"/></a>
 
 
 
