@@ -18,6 +18,8 @@
 <img src="https://img.shields.io/badge/AmazonS3-white?style=flat-square&logo=amazons3&logoColor=569a31"/></a>
 
 
+<img src="https://img.shields.io/badge/Postman-white?style=flat-square&logo=postman&logoColor=ff6c37"/></a>
+
 
 
 
