@@ -19,8 +19,11 @@
 <img src="https://img.shields.io/badge/Github-white?style=flat-square&logo=github&logoColor=181717"/></a>
 <img src="https://img.shields.io/badge/Postman-white?style=flat-square&logo=postman&logoColor=FF6C37"/></a>
 
-
-
+<img src="https://img.shields.io/badge/JavaScript-white?style=flat-square&logo=javascript&logoColor=f7df1e"/></a>
+<img src="https://img.shields.io/badge/Node.js-white?style=flat-square&logo=Node.js&logoColor=5FA04E"/></a>
+<img src="https://img.shields.io/badge/Express-white?style=flat-square&logo=express&logoColor=000000"/></a>
+<img src="https://img.shields.io/badge/MySQL-white?style=flat-square&logo=mysql&logoColor=4479A1"/></a>
+<img src="https://img.shields.io/badge/TypeORM-white?style=flat-square&logo=typeorm&logoColor=fe0803"/></a>
 
 
 
