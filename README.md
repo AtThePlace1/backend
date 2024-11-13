@@ -24,6 +24,7 @@
 <img src="https://img.shields.io/badge/Express-white?style=flat-square&logo=express&logoColor=000000"/></a>
 <img src="https://img.shields.io/badge/MySQL-white?style=flat-square&logo=mysql&logoColor=4479A1"/></a>
 <img src="https://img.shields.io/badge/TypeORM-white?style=flat-square&logo=typeorm&logoColor=fe0803"/></a>
+<img src="https://img.shields.io/badge/AWS-white?style=flat-square&logo=typeorm&logoColor=232F3E"/></a>amazonwebservices
 
 
 
