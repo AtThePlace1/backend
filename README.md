@@ -16,8 +16,8 @@
 <img src="https://img.shields.io/badge/AmazonS3-white?style=flat-square&logo=amazons3&logoColor=569a31"/></a>
 
 <img src="https://img.shields.io/badge/Linux-white?style=flat-square&logo=linux&logoColor=fcc624"/></a>
-<img src="https://img.shields.io/badge/Github-white?style=flat-square&logo=github&logoColor=F05032"/></a>
-<img src="https://img.shields.io/badge/Postman-white?style=flat-square&logo=postman&logoColor=181717"/></a>
+<img src="https://img.shields.io/badge/Github-white?style=flat-square&logo=github&logoColor=181717"/></a>
+<img src="https://img.shields.io/badge/Postman-white?style=flat-square&logo=postman&logoColor=FF6C37"/></a>
 
 
 
