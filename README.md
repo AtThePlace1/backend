@@ -24,7 +24,9 @@
 <img src="https://img.shields.io/badge/Express-white?style=flat-square&logo=express&logoColor=000000"/></a>
 <img src="https://img.shields.io/badge/MySQL-white?style=flat-square&logo=mysql&logoColor=4479A1"/></a>
 <img src="https://img.shields.io/badge/TypeORM-white?style=flat-square&logo=typeorm&logoColor=fe0803"/></a>
-<img src="https://img.shields.io/badge/AWS-white?style=flat-square&logo=amazonwebservices&logoColor=232F3E"/></a>
+<img src="https://img.shields.io/badge/AmazonEC2-white?style=flat-square&logo=amazonec2&logoColor=ff9900"/></a>
+<img src="https://img.shields.io/badge/AmazonRDS-white?style=flat-square&logo=amazonrds&logoColor=527fff"/></a>
+<img src="https://img.shields.io/badge/AmazonS3-white?style=flat-square&logo=amazons3&logoColor=569a31"/></a>
 
 
 
