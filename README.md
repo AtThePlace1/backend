@@ -17,7 +17,7 @@
 
 <img src="https://img.shields.io/badge/Linux-white?style=flat-square&logo=linux&logoColor=fcc624"/></a>
 <img src="https://img.shields.io/badge/Github-white?style=flat-square&logo=github&logoColor=F05032"/></a>
-<img src="https://img.shields.io/badge/Postman-white?style=flat-square&logo=postman&logoColor=ff6c37"/></a>
+<img src="https://img.shields.io/badge/Postman-white?style=flat-square&logo=postman&logoColor=181717"/></a>
 
 
 
