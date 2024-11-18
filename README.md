@@ -23,7 +23,7 @@
 <img src="https://img.shields.io/badge/Node.js-white?style=flat-square&logo=Node.js&logoColor=5FA04E"/></a>
 <img src="https://img.shields.io/badge/Express-white?style=flat-square&logo=express&logoColor=000000"/></a>
 <img src="https://img.shields.io/badge/MySQL-white?style=flat-square&logo=mysql&logoColor=4479A1"/></a>
-<img src="https://img.shields.io/badge/aws-white?style=flat-square&logo=aws&logoColor=232F3E"/></a>
+<img src="https://img.shields.io/badge/aws-white?style=flat-square&logo=amazonwebservices&logoColor=232F3E"/></a>
 
 <img src="https://img.shields.io/badge/AmazonEC2-white?style=flat-square&logo=amazonec2&logoColor=ff9900"/></a>
 <img src="https://img.shields.io/badge/AmazonRDS-white?style=flat-square&logo=amazonrds&logoColor=527fff"/></a>
