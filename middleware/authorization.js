@@ -12,17 +12,31 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const decoded = await jwt.verify(token, SECRETKEY);
-    const findUser = await memberDao.findByEmail(decoded.email);
+
+	  if(decoded.email) {
+	  const findUser = await memberDao.findByEmail(decoded.email);
 
     if (!findUser) {
       return res.status(404).json({ error: 'No User' })
     }
 
-    req.user = findUser;
+    req.user = findUser;}
+
+	  else if (decoded.kakaoId) {
+		  const findKakaoUser = await userDao.getUserByKakaoId(decoded.kakaoId);
+
+		  if(!findKakaoUser) {
+			  return res.status(404).json({error:'No User' });
+		  }
+		  req.user = findKakaoUser;
+	  }
+	  else{
+		  return res.status(403).json({error:'Invalid token : missing email or kakaoId'});
+	  }
     next();
   } catch (error) {
-    console.log(error)
-    return res.status(403).json({ message: 'Invalid or Expired Token' })
+    console.error("Error in authentication middleWare: ", error);
+    return res.status(500).json({ message: 'Invalid Server Error' })
   }
 };
 

@@ -25,4 +25,19 @@ const createUser = async (userData) => {
     , [email, nickname, password, profile_image])
 }
 
-module.exports = { findByEmail, findByNickname, createUser }
+const getUserByKakaoId = async (kakaoId) => {
+	const [user] = await myDataSource.query(`
+	SELECT * FROM users WHERE kakao)id = ? `
+		, [kakaoId]);
+	return user;
+}
+
+const createKakaoUser = async ( kakaoId, nickname, profileImage) => {
+	const result = await myDataSource.query(`
+	INSERT INTO users (kakao_id, nickname, profile_image, is_social)
+	VALUES ( ?, ?, ?, 1) `
+		, [kakaoId, nickname, profileImage]);
+	return { id: result.insertId, kakaoId, nickname, profileImage }
+}
+
+module.exports = { findByEmail, findByNickname, createUser, getUserByKakaoId, createKakaoUser }

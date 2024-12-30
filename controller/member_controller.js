@@ -11,6 +11,20 @@ const createUser = async (req, res, next) => {
     next(error);
   }
 }
+const kakaoLogIn = async (req, res, next) => {
+	const { authCode } = req.body;
+
+	if (!authCode) {
+		return res.status(400).json({message : 'Authorization code is missing' });
+	}
+	try {
+		const tokendata = await memberService.kakaoLogIn(authCode);
+		res.status(tokendata.status).json(tokendata.data);
+	} catch(error) {
+		next(error);
+		console.log(error)
+	}
+}
 
 const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
@@ -24,4 +38,4 @@ const loginUser = async (req, res, next) => {
   }
 }
 
-module.exports = { createUser, loginUser }
+module.exports = { createUser,kakaoLogIn, loginUser }
