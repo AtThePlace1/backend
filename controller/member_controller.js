@@ -7,8 +7,8 @@ const createUser = async (req, res, next) => {
     const newUser = await memberService.createUser({ email, nickname, password, profile_image });
     res.status(201).json({ message: 'User registered successful', user: newUser })
   } catch (error) {
-    console.log(error)
-    next(error);
+    console.error('Error in createUser:',error.message || error);
+    return next(error);
   }
 }
 const kakaoLogIn = async (req, res, next) => {
@@ -21,8 +21,8 @@ const kakaoLogIn = async (req, res, next) => {
 		const tokendata = await memberService.kakaoLogIn(authCode);
 		res.status(tokendata.status).json(tokendata.data);
 	} catch(error) {
-		next(error);
-		console.log(error)
+		console.error('Error in kakaoLogIn:', error.message ||error);
+		return next(error)
 	}
 }
 
@@ -33,8 +33,8 @@ const loginUser = async (req, res, next) => {
     const token = await memberService.loginUser({ email, password });
     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {
-    console.log(error)
-    next(error);
+    console.error('Error in loginUser:', error.message||error);
+    return next(error);
   }
 }
 

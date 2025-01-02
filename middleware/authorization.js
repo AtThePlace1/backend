@@ -11,8 +11,12 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
+	  if(!SECRETKEY) {
+		  throw new Error ('SECRETKEY 환경 변수가 설정되지 않음');
+	  }
     const decoded = jwt.verify(token, SECRETKEY);
 
+	  
 	  if(decoded.email) {
 	  const findUser = await memberDao.findByEmail(decoded.email);
 
@@ -35,7 +39,14 @@ const authMiddleware = async (req, res, next) => {
 	  }
     next();
   } catch (error) {
-    console.error("Error in authentication middleWare: ", error);
+	  console.error('Error in authMiddleware:', error);
+
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: 'Token expired. Please log in again.' });
+    } else if (error.name === 'JsonWebTokenError') {
+      return res.status(403).json({ message: 'Invalid token. Access denied.' });
+    }
+
     return res.status(500).json({ message: 'Invalid Server Error' })
   }
 };

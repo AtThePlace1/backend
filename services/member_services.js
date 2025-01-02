@@ -112,7 +112,8 @@ const kakaoLogIn = async (authCode) => {
 
 	const kakaoId = getKakaoUserData.data.id;
 	const properties = getKakaoUserData.data.properties;
-
+console.log(getKakaoToken.data);
+console.log(getKakaoToken.status);
 	if (!kakaoId || !properties || !properties.nickname || !properties.profile_image) {
 		throw {
 			statusCode: 400,
@@ -159,7 +160,7 @@ const kakaoLogIn = async (authCode) => {
 	console.error("Error during Kakao login : ", error.response?.data || error.message || error );
 	throw {
 		statusCode: error.response?.status || 500,
-		message: error.response?.data?.message || error.message || "Failed to fetch Kakao user data :",
+		message: error.response?.data?.error_description || error.message || "카카오 로그인 중 문제가 발생했습니 :",
 	};
 }
 }
