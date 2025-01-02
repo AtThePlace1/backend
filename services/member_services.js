@@ -142,7 +142,7 @@ const kakaoLogIn = async (authCode) => {
 		}
 	}
 
-	const accessToken = jwt.sign({kakaoId: userInfo.kakao_id, nickname:userInfo.nickname, profile_image:userInfo.profile_image},
+	const accessToken = jwt.sign({kakaoId: userInfo.kakao_id, nickname:userInfo.nickname, profile_image:userInfo.profile_image}, SECRETKEY, {expiresIn:'1d'})
 	return {
 		status: 200,
 		data: {
@@ -162,7 +162,7 @@ const kakaoLogIn = async (authCode) => {
 		message: error.response?.data?.message || error.message || "Failed to fetch Kakao user data :",
 	};
 }
-
+}
 
 const loginUser = async (userData) => {
   const { email, password } = userData;

@@ -11,7 +11,7 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
-    const decoded = await jwt.verify(token, SECRETKEY);
+    const decoded = jwt.verify(token, SECRETKEY);
 
 	  if(decoded.email) {
 	  const findUser = await memberDao.findByEmail(decoded.email);
