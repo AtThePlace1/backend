@@ -23,7 +23,7 @@ const authMiddleware = async (req, res, next) => {
     req.user = findUser;}
 
 	  else if (decoded.kakaoId) {
-		  const findKakaoUser = await userDao.getUserByKakaoId(decoded.kakaoId);
+		  const findKakaoUser = await memberDao.getUserByKakaoId(decoded.kakaoId);
 
 		  if(!findKakaoUser) {
 			  return res.status(404).json({error:'No User' });
