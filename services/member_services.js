@@ -86,7 +86,7 @@ const kakaoLogIn = async (authCode) => {
 			redirect_uri: REDIRECT_URI,
 			code: authCode,
 		});
-
+console.log("Redirect URI being sent:",REDIRECT_URI);
 	const getKakaoToken = await axios.post(
 		"https://kauth.kakao.com/oauth/token",
 		data,
@@ -97,6 +97,8 @@ const kakaoLogIn = async (authCode) => {
 			withCredentials: true,
 		}
 	);
+console.log("kakao token request data:", data);
+		console.log("Kakao token response:", getKakaoToken.data);
 
 	if(!getKakaoToken.data.access_token) {
 		throw {statusCode:401, message:"Failed to retrieve access token from Kakao."};

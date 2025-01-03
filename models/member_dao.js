@@ -27,7 +27,7 @@ const createUser = async (userData) => {
 
 const getUserByKakaoId = async (kakaoId) => {
 	const [user] = await myDataSource.query(`
-	SELECT * FROM users WHERE kakao)id = ? `
+	SELECT * FROM users WHERE kakao_id = ? `
 		, [kakaoId]);
 	return user;
 }

@@ -12,8 +12,9 @@ const createUser = async (req, res, next) => {
   }
 }
 const kakaoLogIn = async (req, res, next) => {
+	console.log("kakao login request boddy:", req.body);
 	const { authCode } = req.body;
-
+console.log("Received authCode:", req.body.authCode);
 	if (!authCode) {
 		return res.status(400).json({message : 'Authorization code is missing' });
 	}
